@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "auto-game",
+      "script": "./app.js",
+      "watch": false,
+      "exec_mode": "cluster"
+    }
+  ]
+}

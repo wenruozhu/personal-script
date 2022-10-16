@@ -1,0 +1,15 @@
+{
+  "name": "sign",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "got": "^11.8.2",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^3.2.10"
+  },
+  "scripts": {
+    "start": "pm2 start ./config/pm2_config.json",
+    "test": "node ./autoGame.js"
+  }
+}
