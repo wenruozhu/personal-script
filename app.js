@@ -61,6 +61,7 @@ async function signIn() {
 
   if (JSON.parse(drawData.body).data.free_count > 0) draw(); // 免费次数大于0时再抽
   lucky();
+  collectBug();
   if (PUSH_PLUS_TOKEN || DING_TALK_TOKEN) {
     if (typeof res.body == "string") res.body = JSON.parse(res.body);
     const msg = res.body.err_no == 0 ? `成功，获得${res.body.data.incr_point}个矿石，矿石总数：${res.body.data.sum_point}个。` : "失败，" + res.body.err_msg;
@@ -124,17 +125,18 @@ async function collectBug() {
       bug_type: item.bug_type
     }
     // console.log('body', body)
-
-    const res = got.post(COLLECT_URL, {
-      hooks: {
-        beforeRequest: [
-          options => {
-            Object.assign(options.headers, HEADERS)
-          }
-        ]
-      },
-      json: body
-    })
+    setTimeout(() => {
+      const res = got.post(COLLECT_URL, {
+        hooks: {
+          beforeRequest: [
+            options => {
+              Object.assign(options.headers, HEADERS)
+            }
+          ]
+        },
+        json: body
+      })
+    }, 3000);
     // console.log('res', res)
   })
   // console.log('bugList', bugList)
@@ -200,11 +202,10 @@ function timeoutFunc(config, func) {
     }, config.interval * 24 * 60 * 60 * 1000)
   }, recent - nowTime)
 }
-/* timeoutFunc({
+timeoutFunc({
   interval: 1,
-  runNow: true,
+  runNow: false,
   // time: "08:" + randomNum(20, 30) + ":" + randomNum(20, 30)
-  time: "12:" + randomNum(10, 30) + ":" + randomNum(20, 30)
+  time: "09:" + randomNum(10, 30) + ":" + randomNum(20, 30)
   // time: "09:50:00"
-}, signIn) */
-collectBug()
+}, signIn)
