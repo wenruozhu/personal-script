@@ -1,0 +1,10 @@
+{
+    "err_no": 0,
+    "err_msg": "success",
+    "data": {
+        "dip_action": 1,
+        "has_dip": true,
+        "total_value": 2981,
+        "dip_value": 10
+    }
+}

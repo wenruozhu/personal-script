@@ -85,7 +85,7 @@ const autoGame = async () => {
             if (res.body.data.todayDiamond < res.body.data.todayLimitDiamond) {
                 setTimeout(() => {
                     autoGame();
-                }, 1000);
+                }, 3000);
             } else {
                 // console.log("今日奖励已达上限！");
             }

@@ -5,16 +5,16 @@ module.exports = {
   aid: '2608',
   uuid: '6945012931944220163',
   _signature: '',
-  DING_TALK_TOKEN: '', // 钉钉webhook参考（很简单）：https://open.dingtalk.com/document/group/custom-robot-access
+  DING_TALK_TOKEN: 'e872241814aabb002d47a17b2d8843a6e0cca5efe917aff9ee684c060908b0bf', // 钉钉webhook参考（很简单）：https://open.dingtalk.com/document/group/custom-robot-access
   uid: '1099167356171719', // *自动玩游戏需要此参数，在掘金首页打开控制台输入这行代码`window.__NUXT__.state.auth.user.id`就可以得到
-  User_Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:90.0) Gecko/20100101 Firefox/90.0"
+  User_Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:90.0) Gecko/20100101 Firefox/90.0",
   // GitHub
-  /* cookie: "ttcid=09bdba82298346048dd2f83cd8aca8b518; MONITOR_WEB_ID=7a6a5403-09a6-4cf2-aa07-7f872fae54b4; _ga=GA1.2.1524270758.1627280724; sid_guard=1c349f34964ac6c24d0d72bfb4ef455c%7C1637998300%7C5184000%7CWed%2C+26-Jan-2022+07%3A31%3A40+GMT; n_mh=0Lqru5PxxsC-v0CJZNRqWrDwVujbTzKV4ajwYN8kSVc; passport_csrf_token_default=bf2e9347ae951a509aaefe98fe3a6c4b; passport_csrf_token=bf2e9347ae951a509aaefe98fe3a6c4b; uid_tt=2dbc29a062e349b25ca4ea5e1de92235; uid_tt_ss=2dbc29a062e349b25ca4ea5e1de92235; sid_tt=1c349f34964ac6c24d0d7…xNDRmNjg5OWQ2YzA2ODJkNGYKFgj9_NC__fW9BRDcvYeNBhiwFDgIQDgaAmxmIiAxYzM0OWYzNDk2NGFjNmMyNGQwZDcyYmZiNGVmNDU1Yw; __tea_cookie_tokens_2608=%257B%2522user_unique_id%2522%253A%25226989117473007552032%2522%252C%2522web_id%2522%253A%25226989117473007552032%2522%252C%2522timestamp%2522%253A1642240249124%257D; _gid=GA1.2.85615495.1642987366; _tea_utm_cache_2608={%22utm_medium%22:%22user_center%22%2C%22utm_campaign%22:%22hdjjgame%22}; tt_scid=yKE7OMJkimlRax4BSFM5MZNzofqFuCUMj2Yx5r7nilUXTccAmCvdB44d-145XbIPcd72; _gat=1",
+  /* cookie: "MONITOR_WEB_ID=325ebb42-84d9-4542-b184-134ea27706c3; _ga=GA1.2.1524270758.1627280724; sid_guard=5b23b5b8b369957f9d441e6c7c3ebae5%7C1650977840%7C31536000%7CWed%2C+26-Apr-2023+12%3A57%3A20+GMT; __tea_cookie_tokens_2608=%257B%2522user_unique_id%2522%253A%25226989117473007552032%2522%252C%2522web_id%2522%253A%25226989117473007552032%2522%252C%2522timestamp%2522%253A1642240249124%257D; _tea_utm_cache_2608={%22utm_source%22:%22web_nav%22}; uid_tt=1d1df4b1d2f4878f127cd8beae78b147; uid_tt_ss=1d1df4b1d2f4878f127cd8beae78b147; sid_tt=5b23b5b8b369957f9d441e6c7c3ebae5; sessionid=5b23b5b8b369957f9d441e6c7c3ebae5; sessionid_ss=5b23b5b8b369957f9d441e6c7c3ebae5; sid_ucp_v1=1.0.0-KDY5NDUyMTc0Yjc2OWM1MzEyNjQ4OTQ5YjkwY2M5YjhiZjBmNDczYzIKFgj9_NC__fW9BRCw2J-TBhiwFDgIQDgaAmxmIiA1YjIzYjViOGIzNjk5NTdmOWQ0NDFlNmM3YzNlYmFlNQ; ssid_ucp_v1=1.0.0-KDY5NDUyMTc0Yjc2OWM1MzEyNjQ4OTQ5YjkwY2M5YjhiZjBmNDczYzIKFgj9_NC__fW9BRCw2J-TBhiwFDgIQDgaAmxmIiA1YjIzYjViOGIzNjk5NTdmOWQ0NDFlNmM3YzNlYmFlNQ; _gid=GA1.2.743424239.1666963764",
   PUSH_PLUS_TOKEN: '',
   aid: '2608',
   uuid: '6989117473007552032',
-  _signature: '',
-  DING_TALK_TOKEN: '', // 钉钉webhook参考（很简单）：https://open.dingtalk.com/document/group/custom-robot-access
+  _signature: '_02B4Z6wo00901TzC8-AAAIDAuurWRVROjik81.dAACxuA04ieOAEd3Ztn9HQ75rG5eeltK3SANGGaNbK7jtlXJ5HzJQERLQ3EbxSKZm5DDxLFkHoHdhhcKqSOHok2tYvpBWI5UEiYEx-jB7c68',
+  DING_TALK_TOKEN: 'e872241814aabb002d47a17b2d8843a6e0cca5efe917aff9ee684c060908b0bf', // 钉钉webhook参考（很简单）：https://open.dingtalk.com/document/group/custom-robot-access
   uid: '3087084381552253', // *自动玩游戏需要此参数，在掘金首页打开控制台输入这行代码`window.__NUXT__.state.auth.user.id`就可以得到
   User_Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:90.0) Gecko/20100101 Firefox/90.0" */
 }

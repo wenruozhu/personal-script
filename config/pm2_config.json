@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "auto-game",
+      "name": "juejin-wechat",
       "script": "./app.js",
       "watch": false,
       "exec_mode": "cluster"

@@ -1,0 +1,36 @@
+{
+    "err_no": 0,
+    "err_msg": "success",
+    "data": [
+        {
+            "bug_type": 13,
+            "bug_time": 1667059200,
+            "bug_show_type": 1,
+            "is_first": true
+        },
+        {
+            "bug_type": 13,
+            "bug_time": 1667059200,
+            "bug_show_type": 1,
+            "is_first": true
+        },
+        {
+            "bug_type": 14,
+            "bug_time": 1667059200,
+            "bug_show_type": 1,
+            "is_first": true
+        },
+        {
+            "bug_type": 14,
+            "bug_time": 1667059200,
+            "bug_show_type": 1,
+            "is_first": true
+        },
+        {
+            "bug_type": 7,
+            "bug_time": 1667145600,
+            "bug_show_type": 1,
+            "is_first": true
+        }
+    ]
+}

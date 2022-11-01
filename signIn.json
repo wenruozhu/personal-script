@@ -1,0 +1,8 @@
+{
+    "err_no": 0,
+    "err_msg": "success",
+    "data": {
+        "incr_point": 100,
+        "sum_point": 507
+    }
+}
