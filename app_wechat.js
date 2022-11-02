@@ -11,8 +11,7 @@ const {
   PUSH_PLUS_TOKEN,
   DING_TALK_TOKEN,
   uid
-} = require('./config')
-// console.log("app.js cookie", cookie)
+} = require('./wechat')
 
 const BASEURL = 'https://api.juejin.cn/growth_api/v1/check_in' // 掘金签到api
 const PUSH_URL = 'http://www.pushplus.plus/send' // pushplus 推送api
@@ -78,12 +77,7 @@ async function handlePush({
       title,
       text: content,
     },
-    // msgtype: "text",
-    // text: {
-    //   content: "签到结果: " + desp
-    // },
   };
-  // console.log('title, content', title, content)
   let param = {
     json: body,
   };
@@ -97,7 +91,7 @@ async function handlePush({
     }
   }
   const res = await got.post(url, param);
-  console.log(res.body);
+  // console.log(res.body);
 }
 /**
  * @desc 延时
@@ -210,9 +204,7 @@ async function lucky() {
     },
     json: body,
   })
-  growth.dippedLucky = true;
-
-  console.log('沾喜气返回结果:', JSON.parse(res.body))
+  // console.log('沾喜气返回结果:', JSON.parse(res.body))
   // console.log('lucky',res.body)
   return res;
 }
@@ -231,37 +223,12 @@ async function notCollectBug() {
   })
   const bugList = JSON.parse(res.body).data;
   // console.log('未收集bug返回结果:', JSON.parse(res.body))
-
-  /* bugList.map(item => {
-    const body = {
-      bug_time: item.bug_time,
-      bug_type: item.bug_type
-    }
-    // console.log('body', body)
-    setTimeout(() => {
-      const res = got.post(COLLECT_URL, {
-        hooks: {
-          beforeRequest: [
-            options => {
-              Object.assign(options.headers, HEADERS)
-            }
-          ]
-        },
-        json: body
-      })
-    }, getRandomArbitrary(2000, 3000));
-  }) */
   return res;
 }
 async function collectBug({
   bug_time = '',
   bug_type = ''
 } = {}) {
-  // const body = {
-  //   bug_time: item.bug_time,
-  //   bug_type: item.bug_type
-  // }
-  // console.log('body', body)
   setTimeout(async () => {
     const res = await got.post(COLLECT_URL, {
       hooks: {
@@ -276,7 +243,7 @@ async function collectBug({
         bug_type
       }
     })
-    console.log('收集bug返回结果:', res)
+    // console.log('收集bug返回结果:', res)
   }, getRandomArbitrary(2000, 3000));
 }
 
@@ -289,21 +256,23 @@ function runAllFn() {
       growth.sumPoint = JSON.parse(res.body).data.sum_point
     }
 
-  }, getRandomArbitrary(1000,2000));
+  }, getRandomArbitrary(1000, 2000));
   setTimeout(async () => {
 
     if (!growth.freeDrawed) {
       const res = await getFreeDraw()
-      growth.lotteryName = JSON.parse(res.body).data.lotteryName
+      growth.lotteryName = JSON.parse(res.body).data.lottery_name
     }
-  }, getRandomArbitrary(2000,3000));
+  }, getRandomArbitrary(2000, 3000));
   setTimeout(async () => {
     if (!growth.dippedLucky) {
       const res = await lucky()
-      growth.dipValue = JSON.parse(res.body).data.dipValue
-      growth.luckyValue = JSON.parse(res.body).data.luckyValue
+      growth.dipValue = JSON.parse(res.body).data.dip_value
+      growth.luckyValue = JSON.parse(res.body).data.total_value
+      growth.dippedLucky = JSON.parse(res.body).data.has_dip;
+
     }
-  }, getRandomArbitrary(5000,6000));
+  }, getRandomArbitrary(5000, 6000));
   setTimeout(async () => {
     if (!growth.collectedBug) {
       const res = await notCollectBug()
@@ -315,6 +284,7 @@ function runAllFn() {
             await wait(getRandomArbitrary(1000, 1500))
           }
         })
+
         for (const request of requests) {
           await request()
           growth.collectBugCount++
@@ -322,7 +292,7 @@ function runAllFn() {
         growth.collectedBug = true
       }
     }
-  }, getRandomArbitrary(6000,7000));
+  }, getRandomArbitrary(6000, 7000));
   setTimeout(async () => {
 
     if (PUSH_PLUS_TOKEN || DING_TALK_TOKEN) {
@@ -330,17 +300,17 @@ function runAllFn() {
       // const msg = `所有接口结果：${growth}`;
       await handlePush(formatToMarkdown({
         type: 'info',
-        message: message()
+        message: message(90000, 100000)
       }));
     }
   }, getRandomArbitrary());
   setTimeout(async () => {
     if (!uid) return;
-    await autoGame();
-  }, getRandomArbitrary(500000,600000));
+    await autoGame('wechat');
+  }, getRandomArbitrary(500000, 600000));
 
 }
-
+autoGame('wechat');
 /**
  * 设置每日定时任务
  * @param {*} config 配置参数的说明：
@@ -370,6 +340,6 @@ timeoutFunc({
   interval: 1,
   runNow: false,
   // time: "08:" + getRandomArbitrary(20, 30) + ":" + getRandomArbitrary(20, 30)
-  time: "09:" + getRandomArbitrary(10, 30) + ":" + getRandomArbitrary(20, 30)
+  time: "09:" + getRandomArbitrary(10, 20) + ":" + getRandomArbitrary(20, 30)
   // time: "09:50:00"
 }, runAllFn)

@@ -2,7 +2,13 @@
   "apps": [
     {
       "name": "juejin-wechat",
-      "script": "./app.js",
+      "script": "./app_wechat.js",
+      "watch": false,
+      "exec_mode": "cluster"
+    },
+    {
+      "name": "juejin-github",
+      "script": "./app_github.js",
       "watch": false,
       "exec_mode": "cluster"
     }
