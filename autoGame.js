@@ -56,7 +56,7 @@ const getTarck = (maps) => {
 
 let runNum = 0;
 const autoGame = async (type) => {
-
+    // console.log('type', type);
     const {
         cookie,
         uid
@@ -77,6 +77,7 @@ const autoGame = async (type) => {
     exp.move(track).then(() => {
         exp.outGame().then(async (res) => {
             res.body = JSON.parse(res.body);
+            // console.log(res.body);
             // console.log(
             //     `Game over, Reward: ${res.body.data.realDiamond}, Today reward: ${res.body.data.todayDiamond}, Today limit reward: ${res.body.data.todayLimitDiamond}`
             // );
@@ -88,8 +89,8 @@ const autoGame = async (type) => {
             // 没达到今日上限继续自动游戏
             if (res.body.data.todayDiamond < res.body.data.todayLimitDiamond) {
                 setTimeout(() => {
-                    autoGame();
-                }, 3000);
+                    autoGame(type);
+                }, 9000);
             } else {
                 // console.log("今日奖励已达上限！");
             }

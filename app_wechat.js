@@ -278,6 +278,7 @@ function runAllFn() {
       const res = await notCollectBug()
       const bugList = JSON.parse(res.body).data;
       if (bugList.length > 0) {
+        growth.collectedBug = true
         const requests = bugList.map(bug => {
           return async () => {
             await collectBug(bug)
@@ -289,7 +290,7 @@ function runAllFn() {
           await request()
           growth.collectBugCount++
         }
-        growth.collectedBug = true
+
       }
     }
   }, getRandomArbitrary(6000, 7000));
@@ -300,17 +301,17 @@ function runAllFn() {
       // const msg = `所有接口结果：${growth}`;
       await handlePush(formatToMarkdown({
         type: 'info',
-        message: message(90000, 100000)
+        message: message()
       }));
     }
-  }, getRandomArbitrary());
+  }, getRandomArbitrary(120000, 130000));
   setTimeout(async () => {
     if (!uid) return;
     await autoGame('wechat');
   }, getRandomArbitrary(500000, 600000));
 
 }
-autoGame('wechat');
+
 /**
  * 设置每日定时任务
  * @param {*} config 配置参数的说明：
