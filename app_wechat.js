@@ -13,18 +13,20 @@ const {
   uid
 } = require('./wechat')
 
-const BASEURL = 'https://api.juejin.cn/growth_api/v1/check_in' // 掘金签到api
-const PUSH_URL = 'http://www.pushplus.plus/send' // pushplus 推送api
+const BASEURL = 'https://api.juejin.cn' // 掘金签到api
+
 const DINGTALK_PUSH_URL = "https://oapi.dingtalk.com/robot/send?access_token=" + DING_TALK_TOKEN; // 钉钉webhook https://oapi.dingtalk.com/robot/send?access_token=e872241814aabb002d47a17b2d8843a6e0cca5efe917aff9ee684c060908b0bf
 
-const URL = `${BASEURL}?aid=${aid}&uuid=${uuid}&_signature=${_signature}`
-const DRAW_URL = `https://api.juejin.cn/growth_api/v1/lottery/draw?aid=${aid}&uuid=${uuid}&_signature=${_signature}`
-const LUCKY_URL = `https://api.juejin.cn/growth_api/v1/lottery_lucky/dip_lucky?aid=${aid}&uuid=${uuid}`
-const DRAW_CHECK_URL = `https://api.juejin.cn/growth_api/v1/lottery_config/get?aid=${aid}&uuid=${uuid}` //抽奖奖品列表
-const NOT_COLLECT_URL = `https://api.juejin.cn/user_api/v1/bugfix/not_collect?aid=${aid}&uuid=${uuid}&spider=0`
-// https://api.juejin.cn/user_api/v1/bugfix/collect?aid=2608&uuid=6989117473007552032&spider=0
-const COLLECT_URL = `https://api.juejin.cn/user_api/v1/bugfix/collect?aid=${aid}&uuid=${uuid}&spider=0`
+const SIGN_IN_URL = `${BASEURL}/growth_api/v1/check_in?aid=${AID}&uuid=${UUID}&_signature=${_SIGNATURE}`
 
+const DRAW_URL = `${BASEURL}/growth_api/v1/lottery/draw?aid=${aid}&uuid=${uuid}&_signature=${_signature}`
+const LUCKY_URL = `${BASEURL}/growth_api/v1/lottery_lucky/dip_lucky?aid=${aid}&uuid=${uuid}`
+const DRAW_CHECK_URL = `${BASEURL}/growth_api/v1/lottery_config/get?aid=${aid}&uuid=${uuid}` //抽奖奖品列表
+const NOT_COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/not_collect?aid=${aid}&uuid=${uuid}&spider=0`
+// ${BASEURL}/user_api/v1/bugfix/collect?aid=2608&uuid=6989117473007552032&spider=0
+const COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/collect?aid=${aid}&uuid=${uuid}&spider=0`
+
+const lbabySign = 'https://server.lbaby1998.com/server/member/sign/sign' //爱婴岛小程序签到
 
 const HEADERS = {
   cookie,
@@ -48,6 +50,7 @@ let growth = {
   lotteryName: '', // 奖品名称
   collectedBug: false, // 是否收集 Bug
   collectBugCount: 0, // 收集 Bug 的数量
+  lbabyReward: 0 //爱婴岛签到积分
 }
 
 function message() {
@@ -59,6 +62,7 @@ function message() {
   当前幸运值 ${growth.luckyValue}
   ${growth.freeDrawed ? `恭喜抽中 ${growth.lotteryName}` : '今日已免费抽奖'}
   ${growth.collectedBug ? `收集 Bug +${growth.collectBugCount}` : '暂无可收集 Bug'}
+  爱婴岛签到 +${growth.lbabyReward} 积分}
   `.trim()
 }
 // push
@@ -127,6 +131,39 @@ function formatToMarkdown({
     title: `脚本执行${type === 'info' ? '成功 🎉' : '失败 💣'}`,
     content: message,
   }
+}
+/**
+ * @desc 爱婴岛签到
+ */
+async function lbabySignIn() {
+  const headers = {
+    "content-type": "application/x-www-form-urlencoded",
+    "connection": "keep-alive",
+    "sessionId": "901194a4-0ecb-4947-bec4-e1720f563150"
+  }
+  const body = {
+    seqNo: "1678757606906438345",
+    system: "ma-shop"
+  }
+
+  const res = await got.post(lbabySign, {
+    hooks: {
+      beforeRequest: [
+        options => {
+
+          Object.assign(options.headers, {
+            "content-type": "application/x-www-form-urlencoded",
+            "connection": "keep-alive",
+            "sessionId": "901194a4-0ecb-4947-bec4-e1720f563150"
+          })
+          // console.log(options.headers)
+        }
+      ]
+    },
+    json: body,
+  })
+
+  return res
 }
 /**
  * @desc 签到
@@ -221,7 +258,6 @@ async function notCollectBug() {
       ]
     },
   })
-  const bugList = JSON.parse(res.body).data;
   // console.log('未收集bug返回结果:', JSON.parse(res.body))
   return res;
 }
@@ -248,7 +284,11 @@ async function collectBug({
 }
 
 function runAllFn() {
-
+  /* setTimeout(async () => {
+    const res = await lbabySignIn()
+    console.log('签到返回结果:', JSON.parse(res.body))
+    growth.lbabyReward = JSON.parse(res.body).rewardIntegral
+  }, getRandomArbitrary(500, 1000)) */
   setTimeout(async () => {
     if (!growth.checkedIn) {
       const res = await signIn();
@@ -305,10 +345,10 @@ function runAllFn() {
       }));
     }
   }, getRandomArbitrary(120000, 130000));
-  setTimeout(async () => {
-    if (!uid) return;
-    await autoGame('wechat');
-  }, getRandomArbitrary(150000, 160000));
+  // setTimeout(async () => {
+  //   if (!uid) return;
+  //   await autoGame('wechat');
+  // }, getRandomArbitrary(150000, 160000));
   // 执行完重置所有值
   growth = {
     checkedIn: false, // 是否签到
