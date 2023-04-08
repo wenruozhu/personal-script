@@ -20,16 +20,17 @@ const {
   UUID,
   _SIGNATURE
 } = require('./env')
+
 const BASEURL = 'https://api.juejin.cn' // 掘金签到api
 const DINGTALK_PUSH_URL = "https://oapi.dingtalk.com/robot/send?access_token=" + DING_TALK_TOKEN; // 钉钉webhook https://oapi.dingtalk.com/robot/send?access_token=e872241814aabb002d47a17b2d8843a6e0cca5efe917aff9ee684c060908b0bf
 
-const SIGN_IN_URL = `${BASEURL}/growth_api/v1/check_in?aid=${AID}&uuid=${UUID}&_signature=${_SIGNATURE}`
-const DRAW_URL = `${BASEURL}/growth_api/v1/lottery/draw?aid=${AID}&uuid=${UUID}&_signature=${_SIGNATURE}`
-const LUCKY_URL = `${BASEURL}/growth_api/v1/lottery_lucky/dip_lucky?aid=${AID}&uuid=${UUID}`
-const DRAW_CHECK_URL = `${BASEURL}/growth_api/v1/lottery_config/get?aid=${AID}&uuid=${UUID}` //抽奖奖品列表
-const NOT_COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/not_collect?aid=${AID}&uuid=${UUID}&spider=0`
+const SIGN_IN_URL = `${BASEURL}/growth_api/v1/check_in?aid=${aid}&uuid=${uuid}&_signature=${_signature}`
+const DRAW_URL = `${BASEURL}/growth_api/v1/lottery/draw?aid=${aid}&uuid=${uuid}&_signature=${_signature}`
+const LUCKY_URL = `${BASEURL}/growth_api/v1/lottery_lucky/dip_lucky?aid=${aid}&uuid=${uuid}`
+const DRAW_CHECK_URL = `${BASEURL}/growth_api/v1/lottery_config/get?aid=${aid}&uuid=${uuid}` //抽奖奖品列表
+const NOT_COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/not_collect?aid=${aid}&uuid=${uuid}&spider=0`
 // ${BASEURL}/user_api/v1/bugfix/collect?aid=2608&uuid=6989117473007552032&spider=0
-const COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/collect?aid=${AID}&uuid=${UUID}&spider=0`
+const COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/collect?aid=${aid}&uuid=${uuid}&spider=0`
 
 
 const HEADERS = {
