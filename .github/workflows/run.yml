@@ -10,7 +10,7 @@ jobs:
   growth:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@main # copy git 仓库到虚拟机上
       - name: Setup node
         uses: actions/setup-node@v3
         with:
