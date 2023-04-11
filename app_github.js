@@ -1,14 +1,6 @@
 const got = require("got");
 const { autoGame } = require("./autoGame");
 
-const {
-  AID,
-  COOKIE,
-  DING_TALK_TOKEN,
-  UID,
-  UUID,
-  _SIGNATURE
-} = require('./github')
 // const {
 //   AID,
 //   COOKIE,
@@ -16,7 +8,15 @@ const {
 //   UID,
 //   UUID,
 //   _SIGNATURE
-// } = require("./env");
+// } = require('./github')
+const {
+  AID,
+  COOKIE,
+  DING_TALK_TOKEN,
+  UID,
+  UUID,
+  _SIGNATURE
+} = require("./env");
 
 const DINGTALK_PUSH_URL = `https://oapi.dingtalk.com/robot/send?access_token=${DING_TALK_TOKEN}`; // 钉钉webhook https://oapi.dingtalk.com/robot/send?access_token=e872241814aabb002d47a17b2d8843a6e0cca5efe917aff9ee684c060908b0bf
 
