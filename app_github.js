@@ -1,14 +1,6 @@
 const got = require("got");
 const { autoGame } = require("./autoGame");
 
-// const {
-//   AID,
-//   COOKIE,
-//   DING_TALK_TOKEN,
-//   UID,
-//   UUID,
-//   _SIGNATURE
-// } = require('./github')
 const {
   AID,
   COOKIE,
@@ -16,7 +8,15 @@ const {
   UID,
   UUID,
   _SIGNATURE
-} = require("./env");
+} = require("./github");
+// const {
+//   AID,
+//   COOKIE,
+//   DING_TALK_TOKEN,
+//   UID,
+//   UUID,
+//   _SIGNATURE
+// } = require("./env");
 
 const DINGTALK_PUSH_URL = `https://oapi.dingtalk.com/robot/send?access_token=${DING_TALK_TOKEN}`; // 钉钉webhook https://oapi.dingtalk.com/robot/send?access_token=e872241814aabb002d47a17b2d8843a6e0cca5efe917aff9ee684c060908b0bf
 
@@ -244,6 +244,7 @@ async function collectBug({ bug_time = "", bug_type = "" } = {}) {
 setTimeout(async () => {
   if (!growth.checkedIn) {
     const res = await signIn();
+    console.log("签到返回", JSON.parse(res.body));
     growth.incrPoint = JSON.parse(res.body).data.incr_point;
     growth.sumPoint = JSON.parse(res.body).data.sum_point;
   }
@@ -251,12 +252,16 @@ setTimeout(async () => {
 setTimeout(async () => {
   if (!growth.freeDrawed) {
     const res = await getFreeDraw();
+    // JSON.parse(res.body)
+    console.log("抽奖返回", res);
+
     growth.lotteryName = JSON.parse(res.body).data.lottery_name;
   }
 }, getRandomArbitrary(2000, 3000));
 setTimeout(async () => {
   if (!growth.dippedLucky) {
     const res = await lucky();
+    console.log("沾喜气返回", JSON.parse(res.body));
     growth.dipValue = JSON.parse(res.body).data.dip_value;
     growth.luckyValue = JSON.parse(res.body).data.total_value;
     growth.dippedLucky = JSON.parse(res.body).data.has_dip;
@@ -265,6 +270,8 @@ setTimeout(async () => {
 setTimeout(async () => {
   if (!growth.collectedBug) {
     const res = await notCollectBug();
+    console.log("未收集bug返回", JSON.parse(res.body));
+
     const bugList = JSON.parse(res.body).data;
     if (bugList.length > 0) {
       growth.collectedBug = true;

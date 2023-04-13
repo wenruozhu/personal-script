@@ -11,13 +11,13 @@ const {
   PUSH_PLUS_TOKEN,
   DING_TALK_TOKEN,
   uid
-} = require('./wechat')
+} = require('./github')
 
 const BASEURL = 'https://api.juejin.cn' // 掘金签到api
 
 const DINGTALK_PUSH_URL = "https://oapi.dingtalk.com/robot/send?access_token=" + DING_TALK_TOKEN; // 钉钉webhook https://oapi.dingtalk.com/robot/send?access_token=e872241814aabb002d47a17b2d8843a6e0cca5efe917aff9ee684c060908b0bf
 
-const SIGN_IN_URL = `${BASEURL}/growth_api/v1/check_in?aid=${AID}&uuid=${UUID}&_signature=${_SIGNATURE}`
+const SIGN_IN_URL = `${BASEURL}/growth_api/v1/check_in?aid=${aid}&uuid=${aid}&_signature=${_signature}`
 
 const DRAW_URL = `${BASEURL}/growth_api/v1/lottery/draw?aid=${aid}&uuid=${uuid}&_signature=${_signature}`
 const LUCKY_URL = `${BASEURL}/growth_api/v1/lottery_lucky/dip_lucky?aid=${aid}&uuid=${uuid}`
@@ -169,7 +169,7 @@ async function lbabySignIn() {
  * @desc 签到
  */
 async function signIn() {
-  const res = await got.post(URL, {
+  const res = await got.post(SIGN_IN_URL, {
     hooks: {
       beforeRequest: [
         options => {
@@ -394,7 +394,7 @@ function timeoutFunc(config, func) {
 }
 timeoutFunc({
   interval: 1,
-  runNow: false,
+  runNow: true,
   // time: "08:" + getRandomArbitrary(20, 30) + ":" + getRandomArbitrary(20, 30)
   time: "09:" + getRandomArbitrary(10, 20) + ":" + getRandomArbitrary(20, 30)
   // time: "09:50:00"
