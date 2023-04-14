@@ -11,7 +11,7 @@ const {
   PUSH_PLUS_TOKEN,
   DING_TALK_TOKEN,
   uid
-} = require('./github')
+} = require('./wechat')
 
 const BASEURL = 'https://api.juejin.cn' // 掘金签到api
 
