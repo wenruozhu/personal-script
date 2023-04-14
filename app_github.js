@@ -45,7 +45,7 @@ const lbabySign = "https://server.lbaby1998.com/server/member/sign/sign"; //爱�
 // const lbabySign = "https://server.lbaby1998.com/server/member/sign/sign"; //爱婴岛小程序签到
 
 const HEADERS = {
-  cookie,
+  COOKIE,
   "user-agent":
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 Edg/92.0.902.67"
 };
