@@ -1,51 +1,52 @@
 const got = require("got");
 const { autoGame } = require("./autoGame");
 
-// const {
-//   cookie,
-//   aid,
-//   uuid,
-//   _signature,
-//   DING_TALK_TOKEN,
-//   uid
-// } = require("./github");
 const {
-  AID,
-  COOKIE,
+  cookie,
+  aid,
+  uuid,
+  _signature,
   DING_TALK_TOKEN,
-  UID,
-  UUID,
-  _SIGNATURE
-} = require("./env");
+  uid
+} = require("./github");
+// const {
+//   AID,
+//   COOKIE,
+//   DING_TALK_TOKEN,
+//   UID,
+//   UUID,
+//   _SIGNATURE
+// } = require("./env");
 
 const BASEURL = "https://api.juejin.cn"; // 掘金签到api
 
 const DINGTALK_PUSH_URL =
   "https://oapi.dingtalk.com/robot/send?access_token=" + DING_TALK_TOKEN; // 钉钉webhook https://oapi.dingtalk.com/robot/send?access_token=e872241814aabb002d47a17b2d8843a6e0cca5efe917aff9ee684c060908b0bf
 
-const SIGN_IN_URL = `${BASEURL}/growth_api/v1/check_in?aid=${AID}&uuid=${AID}&_signature=${_SIGNATURE}`;
+// const SIGN_IN_URL = `${BASEURL}/growth_api/v1/check_in?aid=${AID}&uuid=${AID}&_signature=${_SIGNATURE}`;
 
-const DRAW_URL = `${BASEURL}/growth_api/v1/lottery/draw?aid=${AID}&uuid=${UUID}&_signature=${_SIGNATURE}`;
-const LUCKY_URL = `${BASEURL}/growth_api/v1/lottery_lucky/dip_lucky?aid=${AID}&uuid=${UUID}`;
-const DRAW_CHECK_URL = `${BASEURL}/growth_api/v1/lottery_config/get?aid=${AID}&uuid=${UUID}`; //抽奖奖品列表
-const NOT_COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/not_collect?aid=${AID}&uuid=${UUID}&spider=0`;
-// ${BASEURL}/user_api/v1/bugfix/collect?aid=2608&uuid=6989117473007552032&spider=0
-const COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/collect?aid=${AID}&uuid=${UUID}&spider=0`;
-
-const lbabySign = "https://server.lbaby1998.com/server/member/sign/sign"; //爱婴岛小程序签到
-// const SIGN_IN_URL = `${BASEURL}/growth_api/v1/check_in?aid=${aid}&uuid=${aid}&_signature=${_signature}`;
-
-// const DRAW_URL = `${BASEURL}/growth_api/v1/lottery/draw?aid=${aid}&uuid=${uuid}&_signature=${_signature}`;
-// const LUCKY_URL = `${BASEURL}/growth_api/v1/lottery_lucky/dip_lucky?aid=${aid}&uuid=${uuid}`;
-// const DRAW_CHECK_URL = `${BASEURL}/growth_api/v1/lottery_config/get?aid=${aid}&uuid=${uuid}`; //抽奖奖品列表
-// const NOT_COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/not_collect?aid=${aid}&uuid=${uuid}&spider=0`;
+// const DRAW_URL = `${BASEURL}/growth_api/v1/lottery/draw?aid=${AID}&uuid=${UUID}&_signature=${_SIGNATURE}`;
+// const LUCKY_URL = `${BASEURL}/growth_api/v1/lottery_lucky/dip_lucky?aid=${AID}&uuid=${UUID}`;
+// const DRAW_CHECK_URL = `${BASEURL}/growth_api/v1/lottery_config/get?aid=${AID}&uuid=${UUID}`; //抽奖奖品列表
+// const NOT_COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/not_collect?aid=${AID}&uuid=${UUID}&spider=0`;
 // // ${BASEURL}/user_api/v1/bugfix/collect?aid=2608&uuid=6989117473007552032&spider=0
-// const COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/collect?aid=${aid}&uuid=${uuid}&spider=0`;
+// const COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/collect?aid=${AID}&uuid=${UUID}&spider=0`;
+
+// const lbabySign = "https://server.lbaby1998.com/server/member/sign/sign"; //爱婴岛小程序签到
+const SIGN_IN_URL = `${BASEURL}/growth_api/v1/check_in?aid=${aid}&uuid=${aid}&_signature=${_signature}`;
+
+const DRAW_URL = `${BASEURL}/growth_api/v1/lottery/draw?aid=${aid}&uuid=${uuid}&_signature=${_signature}`;
+const LUCKY_URL = `${BASEURL}/growth_api/v1/lottery_lucky/dip_lucky?aid=${aid}&uuid=${uuid}`;
+const DRAW_CHECK_URL = `${BASEURL}/growth_api/v1/lottery_config/get?aid=${aid}&uuid=${uuid}`; //抽奖奖品列表
+const NOT_COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/not_collect?aid=${aid}&uuid=${uuid}&spider=0`;
+// ${BASEURL}/user_api/v1/bugfix/collect?aid=2608&uuid=6989117473007552032&spider=0
+const COLLECT_URL = `${BASEURL}/user_api/v1/bugfix/collect?aid=${aid}&uuid=${uuid}&spider=0`;
 
 // const lbabySign = "https://server.lbaby1998.com/server/member/sign/sign"; //爱婴岛小程序签到
 
 const HEADERS = {
-  COOKIE,
+  // COOKIE,
+  cookie,
   "user-agent":
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 Edg/92.0.902.67"
 };
