@@ -1,0 +1,30 @@
+name: "juejin-github"
+
+on:
+  schedule:
+    # UTC 时间 1 点 28 分运行一次
+    - cron: "28 1 * * *"
+  workflow_dispatch: #可在GitHub仓库手动运行用于测试
+
+jobs:
+  growth:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main # copy git 仓库到虚拟机上
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.14.2"
+
+      - name: Depend install and serve
+        env:
+          AID: ${{ secrets.AID }},
+          COOKIE: ${{ secrets.COOKIE }},
+          DING_TALK_TOKEN: ${{ secrets.DING_TALK_TOKEN }},
+          UID: ${{ secrets.UID }},
+          UUID: ${{ secrets.UUID}},
+          _SIGNATURE: ${{ secrets._SIGNATURE}},
+
+        run: |
+          npm install
+          npm run serve
