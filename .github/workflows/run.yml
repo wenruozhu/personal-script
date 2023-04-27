@@ -3,7 +3,7 @@ name: "juejin-github"
 on:
   schedule:
     # UTC 时间 1 点 28 分运行一次
-    - cron: "28 1 * * *"
+    # - cron: "28 1 * * *"
   workflow_dispatch: #可在GitHub仓库手动运行用于测试
 
 jobs:
